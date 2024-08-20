@@ -1,0 +1,33 @@
+/* Section d'article */
+.article-section {
+    padding: 20px;
+    max-width: 800px; /* Définir la largeur fixe du conteneur de l'article */
+    margin: 0 auto; /* Centre le conteneur de l'article horizontalement */
+}
+
+.article-image {
+    width: 100%; /* Rend l'image responsive */
+    height: auto; /* Maintient le ratio hauteur/largeur */
+    margin-top: 20px; /* Ajoute un espacement de 20px en haut de l'image pour séparer le texte de l'image */
+}
+
+
+.article-title {
+    font-size: 28px;
+    margin: 0 0 10px; /* Supprime la marge en haut et ajoute 10px en bas du titre */
+}
+
+.article-content p {
+    margin: 0 0 10px; /* Supprime la marge en haut et ajoute 10px en bas des paragraphes */
+}
+
+
+/* Section avec les cartes */
+.related-cards {
+    padding: 20px; /* Ajoute un espacement interne de 20px autour de la section des cartes */
+    text-align: center; /* Centre le texte à l'intérieur de la section des cartes */
+}
+
+.related-cards h1 {
+    margin-bottom: 20px; /* Ajoute un espacement de 20px en bas du titre de la section des cartes */
+}

@@ -1,0 +1,380 @@
+/*
+    formation Innovatech v1.0 by Skytech243,
+    author : Junior Kabuya
+    date : 05 Aug 2024
+    Hey Inspector, if you're here and like the design, take a look at skytech243.com
+*/
+body {
+  margin: 0; /* Retire les marges par défaut */
+  font-family: Arial, sans-serif; /* Définit la police de caractères */
+}
+
+
+/*****************Menu*****************
+**************************************/
+/* En-tête */
+header {
+  display: flex; /* Utilise Flexbox pour l'alignement des éléments */
+  justify-content: space-between; /* Espace entre le logo et le menu de navigation */
+  align-items: center; /* Aligne les éléments verticalement au centre */
+  padding: 20px 25px; /* Ajoute des espaces autour des éléments de l'en-tête */
+  background-color: #333333; /* Couleur de fond sombre */
+  color: white; /* Couleur du texte blanc */
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px; /* Taille de la police pour le logo */
+}
+
+/* Menu de navigation */
+nav {
+  display: flex; /* Utilise Flexbox pour aligner les éléments du menu */
+}
+
+nav ul {
+  list-style: none; /* Supprime les puces de la liste */
+  padding: 0; /* Retire le padding par défaut */
+  margin: 0; /* Retire les marges par défaut */
+  display: flex; /* Aligne les éléments de la liste en ligne */
+}
+
+nav li {
+  margin-left: 70px; /* Ajoute de l'espace à gauche de chaque élément de la liste */
+  position: relative; /* Nécessaire pour positionner les sous-menus */
+}
+
+nav ul li ul li {
+  margin-left: 0px; /* Retire la marge gauche des éléments des sous-menus */
+  position: relative; /* Nécessaire pour le positionnement des sous-menus */
+}
+
+nav a {
+  color: white; /* Couleur du texte des liens */
+  text-decoration: none; /* Supprime le soulignement par défaut des liens */
+}
+
+nav a:hover {
+  background-color: #444; /* Change la couleur de fond au survol */
+  color: #fff; /* Couleur du texte au survol */
+  border-radius: 4px; /* Ajoute des coins arrondis aux liens */
+  padding: 5px 10px; /* Ajoute du padding pour agrandir la zone cliquable */
+}
+
+.active-page {
+  background-color: #444; /* Change la couleur de fond au survol */
+  color: #fff; /* Couleur du texte au survol */
+  border-radius: 4px; /* Ajoute des coins arrondis aux liens */
+  padding: 5px 10px; /* Ajoute du padding pour agrandir la zone cliquable */
+}
+
+/* Menu déroulant pour les catégories */
+.dropdown-content {
+  display: none; /* Cache les sous-menus par défaut */
+  position: absolute; /* Positionne les sous-menus de manière absolue */
+  background-color: #333; /* Couleur de fond sombre pour les sous-menus */
+  min-width: 160px; /* Largeur minimale des sous-menus */
+  top: 100%; /* Positionne les sous-menus juste en dessous du parent */
+  left: 0; /* Aligne les sous-menus avec le bord gauche du parent */
+  z-index: 1; /* Assure que les sous-menus apparaissent au-dessus des autres éléments */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Affiche les sous-menus lorsqu'on survole le parent */
+}
+
+.dropdown-content a {
+  color: white; /* Couleur du texte des liens dans les sous-menus */
+  padding: 12px 16px; /* Ajoute du padding pour les liens des sous-menus */
+  text-decoration: none; /* Supprime le soulignement des liens des sous-menus */
+  display: block; /* Affiche les liens des sous-menus en bloc */
+}
+
+.dropdown-content a:hover {
+  background-color: #575757; /* Change la couleur de fond des sous-menus au survol */
+}
+
+/* Menu hamburger pour les petits écrans */
+.hamburger-menu {
+  display: none; /* Cache le menu hamburger par défaut */
+  cursor: pointer; /* Change le curseur au survol pour indiquer qu'il est cliquable */
+  flex-direction: column; /* Affiche les barres du menu hamburger en colonne */
+}
+
+.hamburger-menu span {
+  background-color: white; /* Couleur des barres du menu hamburger */
+  height: 3px; /* Hauteur de chaque barre */
+  width: 25px; /* Largeur de chaque barre */
+  margin: 3px 0; /* Espace entre chaque barre */
+}
+
+/*****************Contenu Principal*****************
+**************************************************/
+/* Style de la section marquee */
+.marquee {
+  display: flex; /* Utilise Flexbox pour aligner les éléments horizontalement */
+  align-items: center; /* Aligne les éléments verticalement au centre */
+  background-color: #333; /* Couleur de fond de la section */
+  color: white; /* Couleur du texte */
+  overflow: hidden; /* Cache le contenu qui dépasse */
+  position: relative; /* Nécessaire pour le positionnement de la partie défilante */
+}
+
+/* Partie fixe avec le texte "Flash Info" */
+.flash-info {
+  flex: 0 0 12.5%; /* 1fr/8, soit 12.5% de la largeur totale */
+  background-color: #444; /* Couleur de fond du texte fixe */
+  padding: 10px; /* Espace autour du texte */
+  font-weight: bold; /* Met le texte en gras */
+}
+
+/* Partie défilante */
+.marquee-content {
+  flex: 1; /* Prend le reste de la largeur disponible */
+  overflow: hidden; /* Cache le texte qui dépasse */
+  position: relative; /* Nécessaire pour le positionnement absolu du texte défilant */
+}
+
+/* Conteneur du texte défilant */
+.marquee-text {
+  display: flex; /* Utilise Flexbox pour aligner les éléments horizontalement */
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  animation: marquee 20s linear infinite; /* Animation de défilement */
+}
+
+/* Animation de défilement */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* Commence à droite */
+  }
+  100% {
+    transform: translateX(-100%); /* Se déplace complètement vers la gauche */
+  }
+}
+
+.marquee-text p {
+  margin: 0; /* Retire les marges par défaut */
+  padding: 0 2rem; /* Ajoute de l'espace entre les éléments de texte */
+}
+
+
+/* Conteneur pour la section de contenu */
+.content {
+  display: flex; /* Utilise Flexbox pour aligner le diaporama et l'article */
+  justify-content: space-between; /* Espace entre les éléments */
+  padding: 20px; /* Ajoute de l'espace autour du contenu */
+}
+
+/* Conteneur pour le diaporama */
+.slider-container {
+  position: relative; /* Nécessaire pour positionner les boutons de navigation */
+  width: 66.66%; /* 2fr/3 de la largeur */
+  margin-right: 20px; /* Espace entre le diaporama et l'article */
+}
+
+/* Diaporama */
+.slider {
+  display: flex; /* Affiche les slides en ligne */
+  overflow: hidden; /* Masque les parties des slides en dehors du conteneur */
+}
+
+.slide {
+  min-width: 100%; /* Chaque slide occupe toute la largeur du conteneur */
+  height: 400px; /* Hauteur des slides */
+  background-size: cover; /* Les images couvrent tout l'espace des slides */
+  background-position: center; /* Centre les images dans les slides */
+}
+
+.slide-caption {
+  position: absolute; /* Positionne la légende au-dessus du slide */
+  bottom: 20px; /* Distance de la légende par rapport au bas du slide */
+  left: 20px; /* Distance de la légende par rapport au côté gauche */
+  background-color: rgba(0, 0, 0, 0.3); /* Fond semi-transparent pour la légende */
+  color: white; /* Couleur du texte de la légende */
+  padding: 10px; /* Ajoute de l'espace autour du texte de la légende */
+  border-radius: 5px; /* Bordure arrondie */
+  max-width: 85%; /* Limite la largeur de la légende pour éviter le débordement */
+}
+
+
+/* Boutons de navigation du diaporama */
+.prev, .next {
+  position: absolute; /* Positionne les boutons sur les slides */
+  top: 50%; /* Centre verticalement les boutons */
+  transform: translateY(-50%); /* Ajuste la position des boutons */
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour les boutons */
+  color: white; /* Couleur du texte des boutons */
+  border: none; /* Supprime les bordures */
+  padding: 10px; /* Ajoute de l'espace autour des boutons */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  z-index: 10; /* Assure que les boutons apparaissent au-dessus des slides */
+}
+
+.prev {
+  left: 10px; /* Positionne le bouton précédent à gauche */
+}
+
+.next {
+  right: 10px; /* Positionne le bouton suivant à droite */
+}
+
+/* Article classique en vedette */
+.featured-article {
+  width: 33.33%; /* 1fr/3 de la largeur */
+  display: flex; /* Utilise Flexbox pour aligner l'image et le texte */
+  border: 1px solid #ddd; /* ajoute une bordure */
+  border-style: dashed; /* bordure en pointillé */
+  flex-direction: column; /* Affiche l'image au-dessus du texte */
+  border-radius: 8px; /* Bordure arrondie */
+  overflow: hidden; /* Coupe le contenu qui dépasse */
+}
+
+.featured-article img {
+  width: 100%; /* L'image occupe toute la largeur de l'article */
+  height: auto; /* Maintient les proportions de l'image */
+  border-bottom: 1px solid #ddd; /* Bordure entre l'image et le texte */
+}
+
+.article-info {
+  padding: 15px 0; /* Ajoute de l'espace autour du texte */
+}
+
+.article-info h2 {
+  font-size: 18px; /* Taille du titre */
+  margin: 0 0 10px; /* Espace entre le titre et le résumé */
+}
+
+.article-info p {
+  margin: 0 0 15px; /* Espace entre le résumé et le lien */
+}
+
+.article-info .read-more {
+  color: #333; /* Couleur du lien "Lire plus" */
+  text-decoration: none; /* Supprime le soulignement par défaut */
+  font-weight: bold; /* Rend le lien plus visible */
+}
+
+.article-info .read-more:hover {
+  text-decoration: underline; /* Souligne le lien au survol */
+}
+
+/* Deuxième section avec une grille de cartes */
+.cards-section {
+  display: grid; /* Utilise la grille CSS */
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes de largeur égale */
+  gap: 20px; /* Espace entre les cartes */
+  padding: 20px; /* Espace autour de la section */
+}
+
+.card {
+  position: relative; /* Nécessaire pour le positionnement absolu du badge */
+  border: 1px solid #ddd; /* Bordure autour de la carte */
+  border-radius: 8px; /* Coins arrondis */
+  overflow: hidden; /* Coupe le contenu qui dépasse */
+  display: flex; /* Affiche l'image et le contenu en colonne */
+  flex-direction: column;
+}
+
+.badge {
+  position: absolute; /* Positionne le badge de manière absolue */
+  top: 10px; /* Espace du haut */
+  right: 10px; /* Espace du bord droit */
+  background-color: #f00; /* Couleur de fond du badge */
+  color: white; /* Couleur du texte du badge */
+  padding: 5px 10px; /* Espace autour du texte */
+  border-radius: 12px; /* Coins arrondis du badge */
+  font-size: 12px; /* Taille de la police du badge */
+  font-weight: bold; /* Met le texte en gras */
+  text-align: center; /* Centre le texte */
+}
+
+
+.card img {
+  width: 100%; /* L'image occupe toute la largeur de la carte */
+  height: auto; /* Maintient les proportions de l'image */
+}
+
+.card-content {
+  padding: 15px; /* Espace autour du texte */
+}
+
+.card-content h3 {
+  font-size: 18px; /* Taille du titre */
+  margin: 0 0 10px; /* Espace entre le titre et la description */
+}
+
+.card-content p {
+  margin: 0; /* Retire les marges par défaut */
+}
+
+/*****************Footer*****************
+**************************************************/
+footer {
+  bottom: 0; /* Aligne le pied de page avec le bas de la page */
+  background-color: #333; /* Couleur de fond du pied de page */
+  color: white; /* Couleur du texte */
+  text-align: center; /* Centre le texte */
+  padding: 10px; /* Espace autour du texte */
+}
+
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex; /* Affiche le menu hamburger sur les petits écrans */
+  }
+
+  #nav-menu {
+    display: none; /* Cache le menu de navigation par défaut sur les petits écrans */
+    position: absolute; /* Positionne le menu de navigation de manière absolue */
+    top: 60px; /* Distance du menu par rapport au haut de la page */
+    right: 0; /* Aligne le menu de navigation avec le bord droit */
+    background-color: #333; /* Couleur de fond sombre pour le menu de navigation */
+    width: 100%; /* Occupe toute la largeur disponible */
+    flex-direction: column; /* Aligne les éléments du menu de navigation en colonne */
+    z-index: 1000;
+  }
+
+  #nav-menu ul {
+    flex-direction: column; /* Aligne les éléments de la liste en colonne */
+    width: 100%; /* Occupe toute la largeur du menu de navigation */
+  }
+
+  #nav-menu ul li {
+    margin: 15px 10px; /* Espace entre les éléments de la liste sur les petits écrans */
+  }
+
+  #nav-menu.active {
+    display: flex; /* Affiche le menu de navigation lorsqu'il est actif */
+  }
+
+  .dropdown-content {
+    position: static; /* Supprime le positionnement absolu pour les petits écrans */
+    width: 100%; /* Occupe toute la largeur du menu de navigation */
+  }
+
+  .dropdown-content a {
+    padding: 10px 20px; /* Ajuste le padding pour les liens des sous-menus */
+  }
+
+  .dropdown.active .dropdown-content {
+    display: block; /* Affiche les sous-menus lorsqu'ils sont actifs */
+  }
+  /* content */
+  .content {
+    flex-direction: column; /* Aligne les éléments en colonne */
+  }
+
+  .slider-container,
+  .featured-article {
+    width: 100%; /* Occupe toute la largeur de l'écran */
+    margin-right: 0; /* Supprime la marge droite */
+    margin-bottom: 20px; /* Ajoute un espace en bas */
+  }
+  .cards-section {
+    grid-template-columns: 1fr; /* 1 colonne pour les petits écrans */
+  }
+}
+
+
+

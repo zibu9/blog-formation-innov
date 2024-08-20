@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Blog Exemple</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+      <div class="logo">MonBlog</div>
+      <div class="hamburger-menu" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="#" class="active-page">Accueil</a></li>
+          <li class="dropdown">
+            <a href="#">Catégories</a>
+            <ul class="dropdown-content">
+              <li><a href="pages/category.html">Politique</a></li>
+              <li><a href="pages/category.html">Diplomatie</a></li>
+              <li><a href="pages/category.html">Santé</a></li>
+              <li><a href="pages/category.html">Sports</a></li>
+            </ul>
+          </li>
+          <li><a href="pages/about.html">À propos</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Contenu principal -->
+    <main>
+      <!-- <section class="marquee">
+        <div class="flash-info">Flash Info</div>
+        <div class="marquee-content">
+          <div class="marquee-text">
+            <p>Information défilante 1 - Ceci est le premier exemple de texte.</p>
+            <p>Information défilante 2 - Ceci est le deuxième exemple de texte.</p>
+            <p>Information défilante 3 - Ceci est le troisième exemple de texte.</p>
+          </div>
+        </div>
+      </section> -->
+               
+      <section class="content">
+        <div class="slider-container">
+          <div class="slider">
+            <!-- Diaporama -->
+            <div class="slide" style="background-image: url('images/img-1.jpg');">
+              <div class="slide-caption">
+                <h2><a href="pages/details-article.html">Titre du Slide 1 Titre du Slide 1 Titre du Slide 1</a></h2>
+              </div>
+            </div>
+            <div class="slide" style="background-image: url('images/img-7.jpg');">
+              <div class="slide-caption">
+                <h2><a href="pages/details-article.html">Titre du Slide 2</a></h2>
+              </div>
+            </div>
+            <div class="slide" style="background-image: url('images/img-6.jpg');">
+              <div class="slide-caption">
+                <h2><a href="pages/details-article.html">Titre du Slide 3</a></h2>
+              </div>
+            </div>
+          </div>
+          <button class="prev" onclick="prevSlide()">&#10094;</button>
+          <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <div class="featured-article">
+          <!-- Article classique -->
+          <img src="images/img-9.jpg" alt="Image de l'article">
+          <div class="article-info">
+            <h2>Titre de l'article en vedette</h2>
+            <p>Résumé de l'article en vedette...</p>
+            <a href="pages/details-article.html" class="read-more">Lire plus</a>
+          </div>
+        </div>
+      </section>
+      <!-- Deuxième section avec une grille de cartes -->
+      <section class="cards-section">
+        <div class="card">
+          <div class="badge">Catégorie</div>
+          <a href="pages/details-article.html"><img src="images/img-4.jpg" alt="Image 1"></a>
+          <div class="card-content">
+            <h3>Titre de la carte 1</h3>
+            <p>Description de la carte 1.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge">Catégorie</div>
+          <a href="pages/details-article.html"><img src="images/img-5.jpg" alt="Image 2"></a>
+          <div class="card-content">
+            <h3>Titre de la carte 2</h3>
+            <p>Description de la carte 2.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge">Catégorie</div>
+          <a href="pages/details-article.html"><img src="images/img-1.jpg" alt="Image 2"></a>
+          <div class="card-content">
+            <h3>Titre de la carte 2</h3>
+            <p>Description de la carte 2.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="badge">Catégorie</div>
+          <a href="pages/details-article.html"><img src="images/img-2.PNG" alt="Image 2"></a>
+          <div class="card-content">
+            <h3>Titre de la carte 2</h3>
+            <p>Description de la carte 2.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Pied de page -->
+    <footer>
+      <p>&copy; Skytech243 2024 MonBlog. Tous droits réservés.</p>
+    </footer>
+    <script src="js/script.js" defer></script>
+    <script src="js/diaporama.js" defer></script>
+</body>
+</html>

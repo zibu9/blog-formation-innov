@@ -1,0 +1,52 @@
+/* Styles pour la page de contact */
+.contact {
+    padding: 50px; /* Ajoute de l'espace autour de la section de contact */
+  }
+  
+  .contact h1 {
+    font-size: 24px; /* Définit la taille de la police pour le titre */
+    margin-bottom: 20px; /* Espace en bas du titre */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Espace entre chaque groupe de formulaire */
+  }
+  
+  .form-group label {
+    display: block; /* Affiche l'étiquette comme un bloc pour qu'elle occupe toute la largeur disponible */
+    margin-bottom: 5px; /* Espace entre l'étiquette et le champ de saisie */
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%; /* Champs occupent toute la largeur disponible */
+    padding: 10px; /* Espace intérieur des champs */
+    border: 1px solid #ddd; /* Bordure légère autour des champs */
+    border-radius: 4px; /* Coins arrondis pour les champs */
+  }
+  
+  .form-group .error {
+    color: red; /* Couleur du texte pour les messages d'erreur */
+    font-size: 14px; /* Taille de la police pour les messages d'erreur */
+  }
+  
+  button {
+    padding: 10px 15px; /* Espace intérieur du bouton */
+    border: none; /* Supprime les bordures par défaut */
+    border-radius: 4px; /* Coins arrondis pour le bouton */
+    background-color: #333; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    cursor: pointer; /* Change le curseur pour indiquer que le bouton est cliquable */
+  }
+  
+  button:hover {
+    background-color: #444; /* Change la couleur de fond lorsque le bouton est survolé */
+  }
+
+  @media (max-width: 768px) {
+    .contact {
+        padding: 10px; /* Ajoute de l'espace autour de la section de contact */
+    }
+      
+  }
+  
