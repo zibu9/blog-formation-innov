@@ -29,6 +29,16 @@
         exit;
     }
 
+    // Fonction pour valider un nom
+    function isValidName($name) {
+        return preg_match("/^[a-zA-ZÀ-ÖØ-öø-ÿ' -]+$/", $name);
+    }
+
+    // Fonction pour valider un e-mail
+    function isValidEmail($email) {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email);
+    }
+
     // Fonction pour vérifier si un utilisateur est connecté
     function isLoggedIn() {
         return isset($_SESSION['user']["id"]);
