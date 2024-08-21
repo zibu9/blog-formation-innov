@@ -13,22 +13,22 @@ $isAdmin = isAdmin();
 if ($isAdmin) {
     // Pour l'admin : récupérer les utilisateurs et les articles
     $stmtUsers = $pdo->query("SELECT * FROM utilisateurs");
-    $users = $stmtUsers->fetchAll(PDO::FETCH_ASSOC);
+    $users = $stmtUsers->fetchAll();
     
     $stmtArticles = $pdo->query("SELECT * FROM articles");
-    $articles = $stmtArticles->fetchAll(PDO::FETCH_ASSOC);
+    $articles = $stmtArticles->fetchAll();
     
     $stmtCategories = $pdo->query("SELECT * FROM categories");
-    $categories = $stmtCategories->fetchAll(PDO::FETCH_ASSOC);
+    $categories = $stmtCategories->fetchAll();
     
 } else {
     // Pour les utilisateurs normaux : récupérer uniquement leurs articles
     $userId = $_SESSION['user']['id'];
     
-    $stmtArticles = $pdo->prepare("SELECT * FROM articles WHERE id_utilisateur = :user_id");
+    $stmtArticles = $pdo->prepare("SELECT *, DATE_FORMAT(date_creation, 'le %d/%m/%Y à %H:%i') AS formatDate FROM articles WHERE id_utilisateur = :user_id");
     $stmtArticles->bindParam(':user_id', $userId);
     $stmtArticles->execute();
-    $articles = $stmtArticles->fetchAll(PDO::FETCH_ASSOC);
+    $articles = $stmtArticles->fetchAll();
 }
 
 ?>
@@ -77,8 +77,8 @@ if ($isAdmin) {
                                 <td><?php echo htmlspecialchars($user['role']); ?></td>
                                 <td><?php echo $user['statut'] ? 'Activé' : 'Bloqué'; ?></td>
                                 <td class="table-actions">
-                                    <a href="edit_user.php?id=<?php echo $user['id']; ?>">Modifier</a>
-                                    <a href="disable_user.php?id=<?php echo $user['id']; ?>">Desactiver</a>
+                                    <a href="#">Modifier</a>
+                                    <a href="disable_user.php?id=<?php echo $user['id']; ?>"><?php echo $user['statut'] === 1 ? 'Bloquer' : 'Debloquer'; ?></a>
                                     <!-- Ajoutez ici une option pour activer/désactiver -->
                                 </td>
                             </tr>
@@ -104,8 +104,8 @@ if ($isAdmin) {
                                 <td><?php echo htmlspecialchars($category['id']); ?></td>
                                 <td><?php echo htmlspecialchars($category['nom']); ?></td>
                                 <td class="table-actions">
-                                    <a href="edit_category.php?id=<?php echo $category['id']; ?>">Modifier</a>
-                                    <a href="delete_category.php?id=<?php echo $category['id']; ?>">Supprimer</a>
+                                    <a href="#">Modifier</a>
+                                    <a href="#">Supprimer</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -133,12 +133,12 @@ if ($isAdmin) {
                             <tr>
                                 <td><?php echo htmlspecialchars($article['id']); ?></td>
                                 <td><?php echo htmlspecialchars($article['titre']); ?></td>
-                                <td><?php echo htmlspecialchars($article['date_creation']); ?></td>
+                                <td><?php echo htmlspecialchars($article['formatDate']); ?></td>
                                 <td><?php echo $article['approuve'] ? 'Oui' : 'Non'; ?></td>
                                 <td><?php echo $article['actif'] ? 'Oui' : 'Non'; ?></td>
                                 <td class="table-actions">
                                     <a href="edit_article.php?id=<?php echo $article['id']; ?>">Modifier</a>
-                                    <!-- Ajouter une option pour supprimer si non approuvé -->
+                                    <a href="delete_article.php?id=<?php echo $article['id']; ?>"><?php echo $article['actif'] === 1 ? 'Supprimer' : 'Recuperer'; ?></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

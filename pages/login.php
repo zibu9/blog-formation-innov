@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch();
 
         // Vérifier si l'utilisateur existe et si le mot de passe est correct
         if ($user && password_verify($password, $user['mot_de_passe'])) {

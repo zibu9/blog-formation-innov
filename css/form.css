@@ -32,7 +32,7 @@ body {
 .form-group button {
     width: 100%;
     padding: 10px;
-    background-color: #5cb85c;
+    background-color: #007bff;
     border: none;
     color: #fff;
     font-size: 16px;
@@ -40,7 +40,7 @@ body {
     cursor: pointer;
 }
 .form-group button:hover {
-    background-color: #4cae4c;
+    background-color: #228bfc;
 }
 .error {
     color: red;
@@ -49,4 +49,32 @@ body {
 .success {
     color: green;
     margin-bottom: 15px;
+}
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+    min-height: 150px;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: #fff;
 }
