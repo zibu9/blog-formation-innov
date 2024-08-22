@@ -124,3 +124,17 @@ table a:hover {
 .add-button:hover {
     background-color: #218838;
 }
+
+.user-info {
+    float: right;
+    padding: 10px;
+    background-color: #e03737;
+    border-radius: 5px;
+    margin-top: -70px;
+}
+
+.user-info p {
+    margin: 0;
+    font-weight: bold;
+}
+

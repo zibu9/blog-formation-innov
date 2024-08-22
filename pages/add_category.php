@@ -1,4 +1,5 @@
 <?php
+//add_categorie.php
 require_once '../config/config.php';
 
 $errors = [];

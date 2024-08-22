@@ -1,4 +1,5 @@
 <?php
+    //logout.php
     require_once '../config/config.php';
 
     // Vérifie si l'utilisateur est connecté

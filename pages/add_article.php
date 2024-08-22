@@ -1,4 +1,5 @@
 <?php
+//add_article.php
 require_once '../config/config.php';
 
 $errors = [];

@@ -1,4 +1,5 @@
 <?php
+//index.php
 require_once '../config/config.php';
 
 // Rediriger si non connecté
@@ -15,9 +16,15 @@ if ($isAdmin) {
     $stmtUsers = $pdo->query("SELECT * FROM utilisateurs");
     $users = $stmtUsers->fetchAll();
     
-    $stmtArticles = $pdo->query("SELECT * FROM articles");
+    $stmtArticles = $pdo->query
+    (
+        "SELECT articles.*, utilisateurs.nom_utilisateur, categories.nom, DATE_FORMAT(articles.date_creation, 'le %d/%m/%Y à %H:%i') AS formatDate 
+        FROM articles 
+        INNER JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id
+        INNER JOIN categories ON articles.id_categorie = categories.id"
+    );
     $articles = $stmtArticles->fetchAll();
-    
+
     $stmtCategories = $pdo->query("SELECT * FROM categories");
     $categories = $stmtCategories->fetchAll();
     
@@ -50,6 +57,11 @@ if ($isAdmin) {
                 <li><a href="logout.php">Déconnexion</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+            <?php if (isset($_SESSION['user'])): ?>
+                <p>Bonjour, <?php echo htmlspecialchars($_SESSION['user']['nom_utilisateur']); ?> (<?php echo htmlspecialchars($_SESSION['user']['role']); ?>)</p>
+            <?php endif; ?>
+        </div>
     </header>
     
     <main>
@@ -88,6 +100,40 @@ if ($isAdmin) {
             </section>
 
             <section>
+                <h2>Gestion des Articles</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Propriétaire</th>
+                            <th>Date de Création</th>
+                            <th>Approuvé</th>
+                            <th>Actif</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($articles as $article): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($article['id']); ?></td>
+                                <td><?php echo htmlspecialchars($article['titre']); ?></td>
+                                <td><?php echo htmlspecialchars($article['nom_utilisateur']); ?></td>
+                                <td><?php echo htmlspecialchars($article['formatDate']); ?></td>
+                                <td><?php echo $article['approuve'] ? 'Oui' : 'Non'; ?></td>
+                                <td><?php echo $article['actif'] ? 'Oui' : 'Non'; ?></td>
+                                <td class="table-actions">
+                                    <a href="edit_article.php?id=<?php echo $article['id']; ?>">Modifier</a>
+                                    <a href="delete_article.php?id=<?php echo $article['id']; ?>"><?php echo $article['actif'] === 1 ? 'Supprimer' : 'Récupérer'; ?></a>
+                                    <a href="approve_article.php?id=<?php echo $article['id']; ?>&status=<?php echo $article['approuve'] === 1 ? 1 : 0; ?>"><?php echo $article['approuve'] === 1 ? 'Desapprouver' : 'Approuver'; ?></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
                 <h2>Gestion des Catégories</h2>
                 <a href="add_category.php" class="add-button">+</a>
                 <table>
@@ -112,6 +158,7 @@ if ($isAdmin) {
                     </tbody>
                 </table>
             </section>
+
 
         <?php else: ?>
             <section>

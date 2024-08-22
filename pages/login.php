@@ -1,4 +1,5 @@
 <?php
+//login.php
 require_once '../config/config.php';
 
 $errors = [];
@@ -28,14 +29,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $user = $stmt->fetch();
 
-        // Vérifier si l'utilisateur existe et si le mot de passe est correct
-        if ($user && password_verify($password, $user['mot_de_passe'])) {
-            // Stocker les informations de l'utilisateur dans la session
-            $_SESSION['user'] = $user;
-            redirect('index.php'); // Rediriger vers la page d'accueil ou le tableau de bord
-        } else {
-            $errors[] = "Adresse e-mail ou mot de passe incorrect.";
+        if($user){
+            if($user['statut']===0){
+                $errors[] = "Accès refusé. Si le problème persiste, veuillez contacter notre support technique.";
+            }
+            else{
+                // Vérifier si l'utilisateur existe et si le mot de passe est correct
+                if (password_verify($password, $user['mot_de_passe'])) {
+                    // Stocker les informations de l'utilisateur dans la session
+                    $_SESSION['user'] = $user;
+                    redirect('index.php'); // Rediriger vers la page d'accueil ou le tableau de bord
+                } else {
+                    $errors[] = "Mot de passe incorrect.";
+                }
+            }
+        }else{
+            $errors[] = "Adresse e-mail incorrect.";
         }
+
+
     }
 }
 ?>

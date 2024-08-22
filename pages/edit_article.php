@@ -18,7 +18,7 @@ $article_id = (int)$_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM articles WHERE id = :id");
 $stmt->bindParam(':id', $article_id);
 $stmt->execute();
-$article = $stmt->fetch(PDO::FETCH_ASSOC);
+$article = $stmt->fetch();
 
 if (!$article) {
     redirect('index.php'); // Rediriger vers la page d'accueil si l'article n'existe pas

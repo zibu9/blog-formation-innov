@@ -1,4 +1,5 @@
 <?php
+//register.php
 require_once '../config/config.php';
 
 $errors = [];
