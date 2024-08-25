@@ -1,3 +1,6 @@
+<?php 
+  require_once '../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,7 +41,7 @@
   <main>
     <section class="contact">
       <h1>Contactez-nous</h1>
-      <form id="contact-form">
+      <form id="contact-form" action="contact.php" method="POST">
         <div class="form-group">
           <label for="name">Nom :</label>
           <input type="text" id="name" name="name">

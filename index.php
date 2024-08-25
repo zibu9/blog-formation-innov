@@ -12,7 +12,13 @@ $derniers_articles = $pdo->query('SELECT * FROM articles WHERE actif = 1 AND app
 $article_vedette = $pdo->query('SELECT * FROM articles WHERE actif = 1 AND approuve = 1 ORDER BY RAND() LIMIT 1')->fetch();
 
 // Récupérer les 4 derniers articles (après ceux du slider) pour les cartes
-$articles_recents = $pdo->query('SELECT * FROM articles WHERE actif = 1 AND approuve = 1 ORDER BY date_creation DESC LIMIT 4')->fetchAll();
+$articles_recents = $pdo->query('SELECT articles.*, categories.nom AS categorie 
+                                FROM articles 
+                                INNER JOIN categories 
+                                ON (articles.id_categorie = categories.id)  
+                                WHERE articles.actif = 1 AND articles.approuve = 1 
+                                ORDER BY articles.date_creation DESC LIMIT 4'
+                                )->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +86,7 @@ $articles_recents = $pdo->query('SELECT * FROM articles WHERE actif = 1 AND appr
       <section class="cards-section">
         <?php foreach ($articles_recents as $article) : ?>
           <div class="card">
-            <div class="badge"><?= htmlspecialchars($categories[$article['id_categorie']]['nom']) ?></div>
+            <div class="badge"><?= htmlspecialchars($article['categorie']) ?></div>
             <a href="pages/details-article.php?id=<?= $article['id'] ?>"><img src="<?= htmlspecialchars($article['image_lien']) ?>" alt="Image"></a>
             <div class="card-content">
               <h3><?= htmlspecialchars($article['titre']) ?></h3>
